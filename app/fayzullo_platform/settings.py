@@ -129,3 +129,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'main.User'
+
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://bulutmarket.uz',
+    'http://bulutmarket.uz',
+    'http://192.241.134.10:8000/'
+]
