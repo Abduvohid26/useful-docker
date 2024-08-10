@@ -1,0 +1,154 @@
+{% extends 'wrap.html' %}
+{% block content %}
+<div class="quiz-container">
+  <div class="quiz-header">
+    <h4>To'g'ri javoblar -> {{result.score}}</h4>
+    <h4>No'to'g'ri javoblar -> {{result.fail}}</h4>
+    <button onclick="location.href='{% url 'main:quiz' result.category.id %}'">Oraqaga qaytish</button>
+  </div>
+
+  <div class="quiz-results">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Correct Answer</th>
+            <th>Your Answer</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for question_result in result.question_results.all %}
+          <tr>
+            <td data-label="Question">{{ question_result.question.title }}</td>
+            <td data-label="Correct Answer">{{ question_result.correct_variant.title }}</td>
+            <td data-label="Your Answer">{{ question_result.selected_variant.title }}</td>
+            <td data-label="Result">
+              {% if question_result.is_correct %}
+                <span style="color: green;">✔</span>
+              {% else %}
+                <span style="color: red;">✘</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  .quiz-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .quiz-header {
+    margin-bottom: 20px;
+  }
+
+  .quiz-results {
+    margin-top: 20px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+
+  .table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  .table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .table tr:hover {
+    background-color: #e9ecef;
+  }
+
+  .table td {
+    vertical-align: top;
+  }
+
+  .table th, .table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 768px) {
+    .quiz-container {
+      padding: 10px;
+    }
+
+    .table {
+      display: block;
+    }
+
+    .table thead {
+      display: none;
+    }
+
+    .table tbody {
+      display: block;
+    }
+
+    .table tr {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .table td {
+      display: block;
+      text-align: right;
+      font-size: 14px;
+      position: relative;
+      padding-left: 50%;
+      white-space: normal;
+    }
+
+    .table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .table td {
+      font-size: 12px;
+    }
+
+    .quiz-header h4, .quiz-header button {
+      font-size: 12px;
+    }
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'wrap.html' %}
+
+{% block content %}
+<section class="space-top space-extra-bottom">
+    <div class="container">
+        <div class="row gx-60">
+            <div class="col-lg-6">
+                <div class="form-style4 login" data-bg-src="assets/img/bg/course-bg-pattern.jpg">
+                    <h2 class="form-title">Tizimga kirish</h2>
+                    <form action="{% url 'main:login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" autocomplete="off" name="email" id="email" placeholder="Ism yoki Email kiriting">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" autocomplete="off" name="password" id="password" placeholder="Parol kiriting">
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-auto form-group">
+                                <input type="checkbox" name="rememberlogin" id="rememberlogin">
+                                <label for="rememberlogin">Eslab qolish</label>
+                            </div>
+                            {% comment %} <div class="col-auto form-group">
+                                <a class="forget-link" href="#">FORGET A PASSWORD?</a>
+                            </div> {% endcomment %}
+                        </div>
+                        <button type="submit" class="vs-btn">Kirish</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-style4 signup" data-bg-src="assets/img/bg/course-bg-pattern.jpg">
+                    <h2 class="form-title">Ro'yxatdan o'tish</h2>
+                    <form method="post" action="{% url 'main:register' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" autocomplete="off" name="signupname" id="signupname" placeholder="Ismingiz">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" autocomplete="off" name="signupemail" id="signupemail" placeholder="Email manzil">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" autocomplete="off" name="signupphone" id="signupphone" placeholder="Parol kiriting">
+                        </div>
+                        <button type="submit" class="vs-btn">Tastiqlash</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
