@@ -17,8 +17,6 @@ services:
     env_file:
       - ./.env.prod
 
-
-
   nginx:
     build: ./nginx
     ports:

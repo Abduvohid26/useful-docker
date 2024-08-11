@@ -182,7 +182,7 @@
                         <img src="{{ w.image.url }}" alt="Feature Icon">
                         <div class="vs-circle"></div>
                     </div>
-                    <h4 class="feature-title"><a href="about.html" class="text-inherit">{{ w.name }}</a></h4>
+                    <h4 class="feature-title"><a href="{% url 'main:home' %}" class="text-inherit">{{ w.name }}</a></h4>
                     <p class="feature-text">{{ w.body }}</p>
                 </div>
             </div>
