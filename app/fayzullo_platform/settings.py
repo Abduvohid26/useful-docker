@@ -135,5 +135,6 @@ AUTH_USER_MODEL = 'main.User'
 CSRF_TRUSTED_ORIGINS = [
     'https://bulutmarket.uz',
     'http://bulutmarket.uz',
-    'http://192.241.134.10:8000'
+    'http://192.241.134.10:8000',
+    'http://13.51.204.63'
 ]
